@@ -12,13 +12,10 @@ node-lambda run && \
 node-lambda package -A C:/tmp -n PublishedLambda
 
 # deploying
-node-lambda deploy -a AKIAIZNAZZ3JTEER3BZA && \
-  -s 8TXEB2IEIWfm8QXrFHaM0EAXJuzPRobtE65z8iCq -r us-east-1 -n PublishedLambda --handler index.handler
+# before run the command below, configure /user/.aws/credentials file
 
+node-lambda deploy -n PublishedLambda --handler index.handler -u nodejs4.3 -o arn:aws:iam::908533226281:role/service-role/execute_my_lambda
 
-export AWS_ACCESS_KEY_ID=AKIAIZNAZZ3JTEER3BZA
-export AWS_SECRET_ACCESS_KEY=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
+aws apigateway import-rest-api --body 'file://C:/projetos/godois/swagger-test/MyDemoAPI-test-swagger.json'
 
-
-set AWS_ACCESS_KEY_ID=AKIAIZNAZZ3JTEER3BZA
-set AWS_SECRET_ACCESS_KEY=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
+aws sts assume-role --role-arn arn:aws:iam::908533226281:role/execute_api_gateway --role-session-name "ApiGateway" --profile lambda-api.skapee > assume-role-output.txt
