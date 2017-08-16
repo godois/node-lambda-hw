@@ -7,4 +7,6 @@ exports.handler = function(event, context, callback) {
   console.log('Sobrenome: ' + event.sobrenome);
   console.log('Empresa: ' + event.empresa);
   callback(null, {"Message":"My first lambda published by command line"});  // SUCCESS with message
+  //var error = new Error("something is wrong");
+  //callback(error);
 };
